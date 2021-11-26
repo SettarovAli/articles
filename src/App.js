@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { GlobalStyles } from "./GlobalStyles";
 
-function App() {
+import ArticlesList from "./components/ArticlesList";
+
+import { fetchArticles } from "./store/articlesSlice";
+
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchArticles());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <GlobalStyles />
+      <ArticlesList />
+    </React.Fragment>
   );
-}
+};
 
 export default App;
